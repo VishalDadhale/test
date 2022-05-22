@@ -1,0 +1,27 @@
+sudo apt update
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+
+# Install NVIDIA Docker
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docke... | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docke... | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+sudo systemctl restart docker
+
+docker pull tensorflow/tensorflow:nightly-gpu
+
+docker image ls
+
+docker run -it --rm --gpus all -v $(pwd:/workspace/ tensorflow/tensorflow:nightly-gpu bash
+
+#container created
+
+ls
+
+docker system df
+
+
+
